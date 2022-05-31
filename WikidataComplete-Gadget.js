@@ -4,9 +4,9 @@
 * Project Documentation : https://www.wikidata.org/wiki/Wikidata:WikidataComplete                       *
 * Mentors: Dennis Diefenbach,Andreas Both, Aleksandr Perevalov,Kunpeng Guo                              *
 * Participant: Dhairya Khanna                                                                           *                                                           
-*                                                                                                       *
+* Re-Written for Gratisdata by Chima Ugo								*
 ********************************************************************************************************/
-importScript('User:Gabinguo/celebration.js');
+importScript('User:Ugochimobi/celebration.js');
 (function(mw, $, wb) {
     "use strict";
 
@@ -107,7 +107,7 @@ importScript('User:Gabinguo/celebration.js');
         success: function (data) {
             
             for(var i=0; i<data.length; i++) {
-        var url = data[i].wikipediaLink;
+        var url = data[i].gratispaideiaLink;
         var ans = data[i].text;
        // <a target="_blank" rel="noreferrer" href={`${url}#:~:text=${encodeURIComponent(evidence.slice(0, offset_start))}-,${answer.answer}`}> => For chrome highlight, make the code fit your needs.
         var evidence = data[i].evidence;
@@ -132,7 +132,7 @@ importScript('User:Gabinguo/celebration.js');
         async: false,
         dataType: 'json',
         success: function(data) {
-            newitem = data.wikidataLink;
+            newitem = data.gratisdataLink;
         }
     });
     
@@ -163,7 +163,7 @@ importScript('User:Gabinguo/celebration.js');
        
     var html = '\
         <div class="wb-section-heading section-heading wikibase-statements wikibase-statements">\
-        <div class="wikidatacomplete">\
+        <div class="gratisdatacomplete">\
         <div class="wikibase-statementgrouplistview" id="inversesection" > \
              <div class="wikibase-listview"></div> \
              <div class="wikibase-showinverse" style="padding:10px;overflow:hidden;border: 3px solid #c8ccd1;margin: 20px 0;text-align: center;">\
@@ -179,8 +179,8 @@ importScript('User:Gabinguo/celebration.js');
         </div>\
         </div>';
         /*
-        The following function is used to create claim using Wikidata APIs. 
-        Want know about them? Check out the documentation: https://www.wikidata.org/w/api.php 
+        The following function is used to create claim using Gratisdata APIs. 
+        Want know about them? Check out the documentation: https://gratisdata.miraheze.org/w/api.php 
         */
         $(document).ready(function() {
              $('#inversesection:last').remove();
@@ -196,10 +196,10 @@ importScript('User:Gabinguo/celebration.js');
                         property: pid,
                         snaktype: 'value',
                         value: snak,
-                        summary : "Edited with Wikidatacomplete",
+                        summary : "Edited with Gratisdatacomplete",
                         token: token
                         }).then(function (data) {
-                            var comment = `Statement Suggested by Wikidatacomplete and approved by the user: ${username}`;
+                            var comment = `Statement Suggested by Gratisdatacomplete and approved by the user: ${username}`;
                             var api = new mw.Api();
                             var token = mw.user.tokens.values.csrfToken;
                             return  api.post({
@@ -255,7 +255,7 @@ importScript('User:Gabinguo/celebration.js');
             for(var i = 0;i<propertyList.length;i++){
             newList[i] = propertyList[i];
             }
-            // check the property id proposed by Wikidatacomplte api and you can control the show-no-show case.
+            // check the property id proposed by Gratisdatacomplte api and you can control the show-no-show case.
         })
     }
     Properties();
@@ -273,7 +273,7 @@ importScript('User:Gabinguo/celebration.js');
 	                        <div id= "'+result1[i].id+ '" class="wikibase-statementgroupview listview-item" style = "border:3px solid #0645ad !important;margin:20px 0;"> \
 	                            <div class="wikibase-statementgroupview-property" style="border: revert;"> \
 	                                <div class="wikibase-statementgroupview-property-label" dir="auto"> \
-                                    <a href="https://www.wikidata.org/wiki/Property:' + result1[i].property + '">' + result1[i].question + '</a>\
+                                    <a href="https://gratisdata.miraheze.org/wiki/Property:' + result1[i].property + '">' + result1[i].question + '</a>\
 	                                </div> \
 	                            </div> \
 	                            <div class="wikibase-statementlistview" style="border:revert;"> \
@@ -301,7 +301,7 @@ importScript('User:Gabinguo/celebration.js');
                         </div> \
                     </div> \
                     <span class="wikibase-toolbar-container wikibase-edittoolbar-container">\
-                    <span class="wikibase-toolbar-item wikibase-toolbar wikibase-toolbar-container"><span class="wikibase-toolbar-item wikibase-toolbar wikibase-toolbar-container"><span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-save"><a class = "f2w-button f2w-property f2w-approve" href="'+'#'+ result1[i].property +'" title="" text-id = "' + result1[i].text + '" data-id = "'+ result1[i].property +'" url-id = "' + result1[i].object[0].object + '" " qualifier-id = "' + result1[i].evidence + '" " ref-id = "' + result1[i].wikipediaLink + '"accept-id = "'+ result1[i].id +'"style="padding-right: 30px;" ><span class="wb-icon" style = "display:inline-block;vertical-align:middle;background-position:center"></span>publish</a></span></span></span>\
+                    <span class="wikibase-toolbar-item wikibase-toolbar wikibase-toolbar-container"><span class="wikibase-toolbar-item wikibase-toolbar wikibase-toolbar-container"><span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-save"><a class = "f2w-button f2w-property f2w-approve" href="'+'#'+ result1[i].property +'" title="" text-id = "' + result1[i].text + '" data-id = "'+ result1[i].property +'" url-id = "' + result1[i].object[0].object + '" " qualifier-id = "' + result1[i].evidence + '" " ref-id = "' + result1[i].gratispaideiaLink + '"accept-id = "'+ result1[i].id +'"style="padding-right: 30px;" ><span class="wb-icon" style = "display:inline-block;vertical-align:middle;background-position:center"></span>publish</a></span></span></span>\
                     <span class="wikibase-toolbar-item wikibase-toolbar wikibase-toolbar-container"><span class="wikibase-toolbar-item wikibase-toolbar wikibase-toolbar-container"><span class="wikibase-toolbarbutton wikibase-toolbar-item wikibase-toolbar-button wikibase-toolbar-button-cancel"><a class="f2w-button f2w-property f2w-reject" href = "#" title="" reject-id = "'+ result1[i].id +'"style="padding-right: 20px;"><span class="wb-icon" style="padding-top: 22px;"></span>reject</a></span></span></span>\
                     </span> \
                     <div class = wikibase-statementview-references-container>\
@@ -317,12 +317,12 @@ importScript('User:Gabinguo/celebration.js');
 <div class="wikibase-referenceview-listview"><div class="wikibase-snaklistview">\
 <div class="wikibase-snaklistview-listview"><div class="wikibase-snakview wikibase-snakview-5a343e7e758a4282a01316d3e959b6e653b767fc">\
 <div class="wikibase-snakview-property-container">\
-<div class="wikibase-snakview-property" dir="auto"><a title="Property:P4656" href="/wiki/Property:P4656">Wikimedia import URL</a></div>\
+<div class="wikibase-snakview-property" dir="auto"><a title="Property:P394" href="/wiki/Property:P394">Gratispaideia import URL</a></div>\
 </div>\
 <div class="wikibase-snakview-value-container" dir="auto">\
 <div class="wikibase-snakview-typeselector"></div>\
 <div class="wikibase-snakview-body">\
-<div class="wikibase-snakview-value wikibase-snakview-variation-valuesnak"><a title="' + entityid + '" href="' + highlightlink[i] + '"target = "_blank" rel="noreferrer">' + result1[i].wikipediaLink + '</a></div>\
+<div class="wikibase-snakview-value wikibase-snakview-variation-valuesnak"><a title="' + entityid + '" href="' + highlightlink[i] + '"target = "_blank" rel="noreferrer">' + result1[i].gratispaideiaLink + '</a></div>\
 <div class="wikibase-snakview-indicators"></div>\
 </div>\
 </div>\
@@ -334,7 +334,7 @@ importScript('User:Gabinguo/celebration.js');
 <div class="wikibase-referenceview-listview"><div class="wikibase-snaklistview">\
 <div class="wikibase-snaklistview-listview"><div class="wikibase-snakview wikibase-snakview-7e00f9de0f47d0de70ec6ee58edfc93608905b2d">\
 <div class="wikibase-snakview-property-container">\
-<div class="wikibase-snakview-property" dir="auto"><a title="Property:P813" href="/wiki/Property:P813">retrieved</a></div>\
+<div class="wikibase-snakview-property" dir="auto"><a title="Property:P200" href="/wiki/Property:P200">retrieved</a></div>\
 </div>\
 <div class="wikibase-snakview-value-container" dir="auto">\
 <div class="wikibase-snakview-typeselector"></div>\
@@ -351,7 +351,7 @@ importScript('User:Gabinguo/celebration.js');
 <div class="wikibase-referenceview-listview"><div class="wikibase-snaklistview">\
 <div class="wikibase-snaklistview-listview"><div class="wikibase-snakview wikibase-snakview-f30cbd35620c4ea6d0633aaf0210a8916130469b">\
 <div class="wikibase-snakview-property-container">\
-<div class="wikibase-snakview-property" dir="auto"><a title="Property:P143" href="/wiki/Property:P143">evidence</a></div>\
+<div class="wikibase-snakview-property" dir="auto"><a title="Property:P193" href="/wiki/Property:P193">evidence</a></div>\
 </div>\
 <div class="wikibase-snakview-value-container" dir="auto">\
 <div class="wikibase-snakview-typeselector"></div>\
@@ -381,12 +381,12 @@ importScript('User:Gabinguo/celebration.js');
                     let today = new Date();
                     today.setUTCHours(0, 0, 0, 0);
                     var snak = JSON.stringify({ "entity-type": 'item', "numeric-id": arg3.substring(32) });
-                    var snaksorder = ["P4656","P1683"];
+                    var snaksorder = ["P394","P170"];
                     var sourceSnaks = {
-                        "P4656": [
+                        "P394": [
                             {
                                 "snaktype": "value",
-                                "property": "P4656",
+                                "property": "P394",
                                 "datavalue": {
                                     "value": arg5,
                                     "type": "string"
@@ -394,10 +394,10 @@ importScript('User:Gabinguo/celebration.js');
                                 "datatype": "url"
                             }
                         ],
-                        "P813": [
+                        "P200": [
                             {
                                 "snaktype": "value",
-                                "property": "P813",
+                                "property": "P200",
                                 "datavalue": {
                                     "value": {
                                         "time": "+" + today.toISOString().replace(/\.\d*Z$/, 'Z'),
@@ -405,17 +405,17 @@ importScript('User:Gabinguo/celebration.js');
                                         "before": 0,
                                         "after": 0,
                                         "precision": 11,
-                                        "calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+                                        "calendarmodel": "http://gratisdata.miraheze.org/entity/Q471"
                                     },
                                     "type": "time"
                                 },
                                 "datatype": "time"
                             }
                         ],
-                        "P1683": [
+                        "P170": [
                             {
                                 "snaktype": "value",
-                                "property": "P1683",
+                                "property": "P170",
                                 "datavalue": {
                                     "value": {
                                         "text": arg4,
@@ -434,7 +434,7 @@ importScript('User:Gabinguo/celebration.js');
                     
                     mw.notify ('You have successfully added the claim',
 					{
-						title: 'WikidataComplete-info',
+						title: 'GratisdataComplete-info',
 						autoHide: true,
 						type: 'info'
                         
@@ -460,7 +460,7 @@ importScript('User:Gabinguo/celebration.js');
                     }
                     mw.notify ('You have successfully rejected the claim',
 					{
-						title: 'WikidataComplete-info',
+						title: 'GratisdataComplete-info',
 						autoHide: true,
 						type: 'info'
 					}
