@@ -1,4 +1,4 @@
-# Wikidata Complete Gadget
+# Wikibase Complete Gadget
 
 ## 📌Introduction
 
